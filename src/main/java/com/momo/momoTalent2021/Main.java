@@ -1,4 +1,4 @@
-package com.MomoTalent2021;
+package main.java.com.momo.momoTalent2021;
 
 public class Main {
 
