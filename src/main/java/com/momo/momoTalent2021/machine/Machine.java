@@ -22,7 +22,7 @@ public class Machine  {
       this.selectedProducts = new HashMap<>();
       this.inventory =  Inventory.getInventory();
       this.controller = new NoCoinInsertedController(this);
-      this.dispenseStrategy = new PromoAppliedStrategy(this);
+      this.dispenseStrategy = new NoPromoStrategy(this);
    }
 
    public HashMap<ProductSpiral, Integer> getSelectedProducts() {

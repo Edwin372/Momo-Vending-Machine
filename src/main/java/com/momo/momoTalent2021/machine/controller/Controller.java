@@ -79,7 +79,6 @@ public abstract class Controller {
     public void displayMessage() {
         System.out.println("|                          Message window                          |");
         System.out.println("====================================================================");
-        System.out.println("You can press (Q) to turn the machine off");
         DispenseStrategy dispenseStrategy = machine.getDispenseStrategy();
         if (dispenseStrategy.getClass() == PromoAppliedStrategy.class) {
             System.out.println(

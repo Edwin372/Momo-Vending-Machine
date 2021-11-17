@@ -36,10 +36,6 @@ public class Main {
                         machine.getController().selectProduct();
                         break;
                     }
-                    case "Q": {
-                        machineOn = false;
-                        break;
-                    }
                     default: {
                         System.out.println("Invalid input");
                         break;
