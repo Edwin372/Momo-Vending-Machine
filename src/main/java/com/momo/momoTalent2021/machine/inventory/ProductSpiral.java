@@ -2,6 +2,7 @@ package main.java.com.momo.momoTalent2021.machine.inventory;
 
 import main.java.com.momo.momoTalent2021.enums.ProductType;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class ProductSpiral {
@@ -11,6 +12,7 @@ public class ProductSpiral {
     private ProductType productType;
 
     public ProductSpiral(ProductType productType) {
+        this.products = new LinkedList<>();
         this.consecutiveChosenCount = 0;
         this.productType = productType;
     }
@@ -24,24 +26,28 @@ public class ProductSpiral {
     }
 
     public Product dispenseProduct() {
-        consecutiveChosenCount += 1;
         return products.poll();
     }
 
-    public void resetConsecutiveChosenCount() {
-        consecutiveChosenCount = 0;
+    public boolean isAvailable(int amount) {
+        return amount <= products.size();
     }
 
     public int getConsecutiveChosenCount() {
         return consecutiveChosenCount;
     }
 
+
     public void setConsecutiveChosenCount(int consecutiveChosenCount) {
         this.consecutiveChosenCount = consecutiveChosenCount;
     }
 
+    public ProductType getProductType() {
+        return productType;
+    }
+
     public void refill() {
-        for (int i = products.size() - 1 ; i < CAPACITY; i++) {
+        for (int i = products.size() ; i < CAPACITY; i++) {
            Product product = new Product(productType);
            products.add(product);
         }

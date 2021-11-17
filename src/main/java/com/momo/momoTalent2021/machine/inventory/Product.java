@@ -5,11 +5,15 @@ import main.java.com.momo.momoTalent2021.enums.ProductType;
 import java.util.Objects;
 
 public class Product {
-    ProductType productType;
+    private ProductType productType;
     // There might be more fields here
 
     public Product(ProductType productType) {
         this.productType = productType;
+    }
+
+    public ProductType getProductType() {
+        return productType;
     }
 
     @Override
@@ -21,14 +25,7 @@ public class Product {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(productType);
-    }
-
-    @Override
     public String toString() {
-        return "Product{" +
-                "productType=" + productType +
-                '}';
+        return productType.getName();
     }
 }

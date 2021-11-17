@@ -1,7 +1,6 @@
 package main.java.com.momo.momoTalent2021.enums;
 
 public enum Coin {
-
     TEN_THOUSAND_VND(10000),
     TWENTY_THOUSAND_VND(20000),
     FIFTY_THOUSAND_VND(50000),
@@ -15,4 +14,5 @@ public enum Coin {
     }
 
     public int getValue() { return value; }
+
 }

@@ -11,9 +11,10 @@ public class Inventory {
 
     private Inventory() {
         this.productMenu = new HashMap<>();
-        productMenu.put(1, new ProductSpiral(ProductType.COKE));
-        productMenu.put(2, new ProductSpiral(ProductType.PEPSI));
-        productMenu.put(3, new ProductSpiral(ProductType.SODA));
+        ProductType [] productTypes = ProductType.values();
+        for (int i = 0; i < productTypes.length; i++) {
+            productMenu.put( i + 1, new ProductSpiral(productTypes[i]));
+        }
         refillAll();
     }
 
@@ -45,5 +46,21 @@ public class Inventory {
             spiral.refill();
         }
     }
+
+    public void displayGUI() {
+        System.out.println("====================================================================");
+        System.out.println("|                             Inventory                            |");
+        System.out.println("====================================================================");
+        for (Integer code: productMenu.keySet()) {
+            ProductSpiral productSpiral = productMenu.get(code);
+            System.out.print("|      Name: " + productSpiral.getProductType().getName() + "; ");
+            System.out.print("Price: " + productSpiral.getProductType().getPrice() + "; ");
+            System.out.print("Remain product: " + productSpiral.getRemainProduct() + "; ");
+            System.out.println("Code: " + code+ "      |");
+        }
+        System.out.println("====================================================================");
+
+    }
+
 
 }

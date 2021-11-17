@@ -2,9 +2,9 @@ package main.java.com.momo.momoTalent2021.enums;
 
 public enum ProductType {
 
-    COKE("Coke", 10000),
+    COKE("Coke ", 10000),
     PEPSI("Pepsi", 10000),
-    SODA("Soda", 20000);
+    SODA("Soda ", 20000);
 
     private String name;
     private int price;
@@ -18,7 +18,7 @@ public enum ProductType {
         return name;
     }
 
-    public long getPrice(){
+    public int getPrice(){
         return price;
     }
 
