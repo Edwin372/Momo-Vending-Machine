@@ -11,13 +11,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
-public  abstract class Controller {
+public abstract class Controller {
 
     protected Machine machine;
 
-    Controller(Machine machine) {
+    public Controller(Machine machine) {
         this.machine = machine;
-
     }
 
     public int computeTotalCost() {
@@ -80,6 +79,7 @@ public  abstract class Controller {
     public void displayMessage() {
         System.out.println("|                          Message window                          |");
         System.out.println("====================================================================");
+        System.out.println("You can press (Q) to turn the machine off");
         DispenseStrategy dispenseStrategy = machine.getDispenseStrategy();
         if (dispenseStrategy.getClass() == PromoAppliedStrategy.class) {
             System.out.println(
@@ -92,7 +92,7 @@ public  abstract class Controller {
 
     public abstract void cancelAndRefund();
 
-    public abstract void confirmAndDispenseProduct();
+    public abstract void dispenseProduct();
 
     public abstract void selectProduct();
 }

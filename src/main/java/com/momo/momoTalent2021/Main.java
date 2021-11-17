@@ -10,9 +10,12 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         Machine machine = Machine.getMachine();
+        PromoSchemeManager promoSchemeManager = new PromoSchemeManager();
+
         boolean machineOn = true;
         while (machineOn) {
-            System.out.println("---------------------------------------------------------------------------------------------- ");
+            System.out.println("------------------------------------------------------------------------------- ");
+            promoSchemeManager.start();
             machine.displayGUI();
             String input = scanner.next();
             try {
@@ -22,7 +25,7 @@ public class Main {
                         break;
                     }
                     case "Y":{
-                        machine.getController().confirmAndDispenseProduct();
+                        machine.getController().dispenseProduct();
                         break;
                     }
                     case "X":{
@@ -35,14 +38,18 @@ public class Main {
                     }
                     case "Q": {
                         machineOn = false;
+                        break;
                     }
                     default: {
                         System.out.println("Invalid input");
+                        break;
                     }
                 }
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+
         }
 
     }

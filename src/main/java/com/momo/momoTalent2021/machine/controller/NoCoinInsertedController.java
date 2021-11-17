@@ -31,7 +31,7 @@ public class NoCoinInsertedController extends Controller {
     }
 
     @Override
-    public void confirmAndDispenseProduct() {
+    public void dispenseProduct() {
         throw new NoCoinInsertedException();
     }
 

@@ -22,7 +22,7 @@ public class CoinInsertedAndNoProductSelectedController extends Controller {
     }
 
     @Override
-    public void confirmAndDispenseProduct() {
+    public void dispenseProduct() {
         throw new NoChosenProductException();
     }
 
@@ -39,7 +39,7 @@ public class CoinInsertedAndNoProductSelectedController extends Controller {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Choose your product (1-3): ");
         String spiralCode = scanner.next();
-        ProductSpiral selectingProduct = machine.getInventory().selectProductType(Integer.parseInt(spiralCode));
+        ProductSpiral selectingProduct = machine.getInventory().selectProductSpiral(Integer.parseInt(spiralCode));
 
         if (isAffordable(selectingProduct.getProductType().getPrice())) {
             machine.getSelectedProducts().put(selectingProduct, 1);

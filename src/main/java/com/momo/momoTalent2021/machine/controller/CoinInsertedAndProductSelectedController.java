@@ -6,6 +6,7 @@ import main.java.com.momo.momoTalent2021.exceptions.UnaffordableException;
 import main.java.com.momo.momoTalent2021.machine.Machine;
 import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -18,10 +19,12 @@ public class CoinInsertedAndProductSelectedController extends Controller {
     public void displaySelectedProduct() {
         HashMap<ProductSpiral, Integer> selectedProducts = machine.getSelectedProducts();
         for (ProductSpiral productSpiral: selectedProducts.keySet()) {
-            System.out.print(productSpiral.getProductType().getName()+ ": ");
+            System.out.print(productSpiral.getProductType().getName() + ": ");
             System.out.println(selectedProducts.get(productSpiral));
         }
     }
+
+
 
     @Override
     public void cancelAndRefund() {
@@ -30,24 +33,14 @@ public class CoinInsertedAndProductSelectedController extends Controller {
     }
 
     @Override
-    public void confirmAndDispenseProduct() {
-        try {
-            HashMap<ProductSpiral, Integer> selectedProducts = machine.getSelectedProducts();
-            machine.setBudget(machine.getBudget() - computeTotalCost());
-            System.out.println("Here are your products");
-            displaySelectedProduct();
-            for (ProductSpiral productSpiral: selectedProducts.keySet()) {
-                for (int i = 0; i < selectedProducts.get(productSpiral); i++) {
-                    productSpiral.dispenseProduct();
-                }
-            }
-            System.out.println("Please Take your products in the dispense box and receive your changes");
-            System.out.println("Here is your changes" + machine.getBudget());
-            machine.setControllerState(new NoCoinInsertedController(machine));
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void dispenseProduct() {
+        int totalCost = computeTotalCost();
+        machine.setBudget(machine.getBudget() - totalCost);
+        System.out.println("-----------------------------------BILL---------------------------------------- ");
+        displaySelectedProduct();
+        System.out.println("Total cost: " + totalCost);
+        machine.getDispenseStrategy().execute();
+        machine.setControllerState(new NoCoinInsertedController(machine));
     }
 
     @Override
@@ -67,7 +60,7 @@ public class CoinInsertedAndProductSelectedController extends Controller {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Choose your product (1-3): ");
         String spiralCode = scanner.next();
-        ProductSpiral selectingProduct = machine.getInventory().selectProductType(Integer.parseInt(spiralCode));
+        ProductSpiral selectingProduct = machine.getInventory().selectProductSpiral(Integer.parseInt(spiralCode));
         int currentTotalCost = computeTotalCost() + selectingProduct.getProductType().getPrice();
 
         if (!isAffordable(currentTotalCost)) {
@@ -75,13 +68,13 @@ public class CoinInsertedAndProductSelectedController extends Controller {
         }
 
         if(selectedProducts.containsKey(selectingProduct)) {
-            int currentAmount = selectedProducts.get(selectingProduct);
+            int currentSelectingProductAmount = selectedProducts.get(selectingProduct);
 
-            if (!selectingProduct.isAvailable(currentAmount + 1)) {
+            if (!selectingProduct.isAvailable(currentSelectingProductAmount + 1)) {
                 throw new NotEnoughAvailableProductException();
             }
 
-            selectedProducts.put(selectingProduct, currentAmount + 1);
+            selectedProducts.put(selectingProduct, currentSelectingProductAmount + 1);
         }else {
             selectedProducts.put(selectingProduct, 1);
         }

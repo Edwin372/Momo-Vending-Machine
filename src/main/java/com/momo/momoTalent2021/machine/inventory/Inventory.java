@@ -15,7 +15,7 @@ public class Inventory {
         for (int i = 0; i < productTypes.length; i++) {
             productMenu.put( i + 1, new ProductSpiral(productTypes[i]));
         }
-        refillAll();
+        this.refillAll();
     }
 
     public static Inventory getInventory() {
@@ -31,7 +31,7 @@ public class Inventory {
         }
     }
 
-    public ProductSpiral selectProductType(int spiralCode) {
+    public ProductSpiral selectProductSpiral(int spiralCode) {
        ProductSpiral selectedSpiral = productMenu.get(spiralCode);
        if (!selectedSpiral.isEmpty()){
            return selectedSpiral;
@@ -45,6 +45,10 @@ public class Inventory {
         for (ProductSpiral spiral: productMenu.values()) {
             spiral.refill();
         }
+    }
+
+    public HashMap<Integer, ProductSpiral> getProductMenu() {
+        return productMenu;
     }
 
     public void displayGUI() {

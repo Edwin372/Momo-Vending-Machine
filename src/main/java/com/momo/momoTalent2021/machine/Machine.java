@@ -2,14 +2,15 @@ package main.java.com.momo.momoTalent2021.machine;
 
 import main.java.com.momo.momoTalent2021.machine.controller.NoCoinInsertedController;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.DispenseStrategy;
+import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.NoPromoStrategy;
+import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.PromoAppliedStrategy;
 import main.java.com.momo.momoTalent2021.machine.inventory.Inventory;
 import main.java.com.momo.momoTalent2021.machine.controller.Controller;
 import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
 
 import java.util.HashMap;
 
-public class Machine {
-   private final int refillTime = 60;
+public class Machine  {
    private static Machine machine;
    private Controller controller;
    private Inventory inventory;
@@ -21,15 +22,11 @@ public class Machine {
       this.selectedProducts = new HashMap<>();
       this.inventory =  Inventory.getInventory();
       this.controller = new NoCoinInsertedController(this);
+      this.dispenseStrategy = new PromoAppliedStrategy(this);
    }
 
    public HashMap<ProductSpiral, Integer> getSelectedProducts() {
       return selectedProducts;
-   }
-
-
-   public int getRefillTime() {
-      return refillTime;
    }
 
    public int getBudget() {
