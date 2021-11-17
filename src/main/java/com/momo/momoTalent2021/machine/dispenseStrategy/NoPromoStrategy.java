@@ -5,4 +5,9 @@ public class NoPromoStrategy implements DispenseStrategy {
     public void execute() {
 
     }
+
+    @Override
+    public void checkApplyCondition() {
+
+    }
 }

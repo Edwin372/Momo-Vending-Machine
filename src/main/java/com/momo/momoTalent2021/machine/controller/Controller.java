@@ -3,6 +3,7 @@ package main.java.com.momo.momoTalent2021.machine.controller;
 import main.java.com.momo.momoTalent2021.enums.Coin;
 import main.java.com.momo.momoTalent2021.exceptions.InvalidCoinException;
 import main.java.com.momo.momoTalent2021.machine.Machine;
+import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.PromoAppliedStrategy;
 import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.DispenseStrategy;
 
@@ -16,14 +17,7 @@ public  abstract class Controller {
 
     Controller(Machine machine) {
         this.machine = machine;
-    }
 
-    public DispenseStrategy getDispenseStrategy() {
-        return machine.getDispenseStrategy();
-    }
-
-    public void setDispenseStrategy(DispenseStrategy dispenseStrategy) {
-        machine.setDispenseStrategy(dispenseStrategy);
     }
 
     public int computeTotalCost() {
@@ -86,6 +80,14 @@ public  abstract class Controller {
     public void displayMessage() {
         System.out.println("|                          Message window                          |");
         System.out.println("====================================================================");
+        DispenseStrategy dispenseStrategy = machine.getDispenseStrategy();
+        if (dispenseStrategy.getClass() == PromoAppliedStrategy.class) {
+            System.out.println(
+                    "Promo available, you have " +
+                    ((PromoAppliedStrategy) dispenseStrategy).getWinRate() +
+                    "% to get a product for free"
+            );
+        }
     }
 
     public abstract void cancelAndRefund();
