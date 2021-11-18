@@ -3,6 +3,7 @@ package main.java.com.momo.momoTalent2021.machine.controller;
 import main.java.com.momo.momoTalent2021.enums.Coin;
 import main.java.com.momo.momoTalent2021.exceptions.InvalidCoinException;
 import main.java.com.momo.momoTalent2021.machine.Machine;
+import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.IDispenseStrategy;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.PromoAppliedStrategy;
 import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.DispenseStrategy;
@@ -83,7 +84,7 @@ public abstract class Controller implements IController{
     public void displayMessage() {
         System.out.println("|                          Message window                          |");
         System.out.println("====================================================================");
-        DispenseStrategy dispenseStrategy = machine.getDispenseStrategy();
+        IDispenseStrategy dispenseStrategy = machine.getDispenseStrategy();
         if (dispenseStrategy.getClass() == PromoAppliedStrategy.class) {
             System.out.println(
                     "Promo available, you have " +

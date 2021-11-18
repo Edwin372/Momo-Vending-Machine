@@ -1,7 +1,5 @@
 package main.java.com.momo.momoTalent2021.machine.inventory;
-
 import main.java.com.momo.momoTalent2021.enums.ProductType;
-
 import java.util.LinkedList;
 import java.util.Queue;
 

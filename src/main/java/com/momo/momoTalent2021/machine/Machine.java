@@ -1,9 +1,10 @@
 package main.java.com.momo.momoTalent2021.machine;
 
+import main.java.com.momo.momoTalent2021.machine.controller.IController;
 import main.java.com.momo.momoTalent2021.machine.controller.NoCoinInsertedController;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.DispenseStrategy;
+import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.IDispenseStrategy;
 import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.NoPromoStrategy;
-import main.java.com.momo.momoTalent2021.machine.dispenseStrategy.PromoAppliedStrategy;
 import main.java.com.momo.momoTalent2021.machine.inventory.Inventory;
 import main.java.com.momo.momoTalent2021.machine.controller.Controller;
 import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
@@ -12,10 +13,10 @@ import java.util.HashMap;
 
 public class Machine  {
    private static Machine machine;
-   private Controller controller;
+   private IController controller;
    private Inventory inventory;
    private int budget;
-   private DispenseStrategy dispenseStrategy;
+   private IDispenseStrategy dispenseStrategy;
    private HashMap<ProductSpiral, Integer> selectedProducts;
 
    private Machine() {
@@ -37,7 +38,7 @@ public class Machine  {
       this.budget = budget;
    }
 
-   public DispenseStrategy getDispenseStrategy() {
+   public IDispenseStrategy getDispenseStrategy() {
       return dispenseStrategy;
    }
 
@@ -73,5 +74,5 @@ public class Machine  {
       return inventory;
    }
 
-   public Controller getController() {return controller;}
+   public IController getController() {return controller;}
 }

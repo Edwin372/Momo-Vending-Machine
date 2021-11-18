@@ -1,8 +1,5 @@
 package main.java.com.momo.momoTalent2021.machine.inventory;
-
 import main.java.com.momo.momoTalent2021.enums.ProductType;
-
-import java.util.Objects;
 
 public class Product {
     private ProductType productType;
