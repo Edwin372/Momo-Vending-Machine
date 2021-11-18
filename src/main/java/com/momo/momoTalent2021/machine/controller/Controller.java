@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
-public abstract class Controller {
+public abstract class Controller implements IController{
 
     protected Machine machine;
 
@@ -19,6 +19,7 @@ public abstract class Controller {
         this.machine = machine;
     }
 
+    @Override
     public int computeTotalCost() {
         HashMap<ProductSpiral, Integer> selectedProducts = machine.getSelectedProducts();
         int totalCost = 0;
@@ -33,6 +34,7 @@ public abstract class Controller {
     }
 
 
+    @Override
     public void displayGUI() {
         System.out.println("====================================================================");
         System.out.println("|                            Valid coins                           |");
@@ -50,6 +52,7 @@ public abstract class Controller {
 
     }
 
+    @Override
     public void insertCoin() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Choose your coin (A-E): ");
@@ -76,6 +79,7 @@ public abstract class Controller {
         }
     }
 
+    @Override
     public void displayMessage() {
         System.out.println("|                          Message window                          |");
         System.out.println("====================================================================");
@@ -89,9 +93,12 @@ public abstract class Controller {
         }
     }
 
+    @Override
     public abstract void cancelAndRefund();
 
+    @Override
     public abstract void dispenseProduct();
 
+    @Override
     public abstract void selectProduct();
 }

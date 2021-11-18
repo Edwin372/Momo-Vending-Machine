@@ -5,7 +5,7 @@ import main.java.com.momo.momoTalent2021.machine.inventory.ProductSpiral;
 
 import java.util.HashMap;
 
-public abstract class DispenseStrategy {
+public abstract class DispenseStrategy implements IDispenseStrategy {
     protected Machine machine;
 
     public DispenseStrategy(Machine machine) {
