@@ -15,7 +15,7 @@ public class NoCoinInsertedController extends Controller {
     @Override
     public void displayMessage() {
         super.displayMessage();
-        System.out.println("Your budget is empty, please press (I) to insert coin");
+        System.out.println("Your budget is empty, please press (I) to insert coin.");
         System.out.print("Your input: ");
     }
 

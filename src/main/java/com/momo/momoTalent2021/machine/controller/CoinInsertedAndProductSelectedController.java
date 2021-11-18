@@ -50,7 +50,7 @@ public class CoinInsertedAndProductSelectedController extends Controller {
         System.out.println("Selected products: ");
         displaySelectedProduct();
         System.out.println("Total cost: " + computeTotalCost());
-        System.out.println("You can choose another product or insert more coin");
+        System.out.println("You can insert more coin (I), choose another product (P) or press (Y) to dispense selected products.");
         System.out.print("Your input: ");
     }
 

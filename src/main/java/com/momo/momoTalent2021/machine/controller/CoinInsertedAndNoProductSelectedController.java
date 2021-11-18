@@ -30,7 +30,7 @@ public class CoinInsertedAndNoProductSelectedController extends Controller {
     public void displayMessage() {
         super.displayMessage();
         System.out.println("Your current budget: " + machine.getBudget());
-        System.out.println("Please choose one product or insert more coin.");
+        System.out.println("Please choose one product (P) or insert more coin (I).");
         System.out.print("Your input: ");
     }
 
