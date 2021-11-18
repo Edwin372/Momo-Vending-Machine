@@ -42,11 +42,13 @@ public class Machine  {
       return dispenseStrategy;
    }
 
-   public void setDispenseStrategy(DispenseStrategy dispenseStrategy) {
+   public void setDispenseStrategy(IDispenseStrategy dispenseStrategy) {
       this.dispenseStrategy = dispenseStrategy;
    }
 
-   public void setControllerState(Controller controllerState) {
+   public IController getController() {return controller;}
+
+   public void setControllerState(IController controllerState) {
       this.controller = controllerState;
    }
 
@@ -74,5 +76,4 @@ public class Machine  {
       return inventory;
    }
 
-   public IController getController() {return controller;}
 }
